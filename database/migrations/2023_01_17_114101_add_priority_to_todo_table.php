@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('todo', function (Blueprint $table) {
+        Schema::table('todos', function (Blueprint $table) {
             $table->string('priority')->nullable()->after('due_date');
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('todo', function (Blueprint $table) {
+        Schema::table('todos', function (Blueprint $table) {
             $table->dropColumn('priority');
         });
     }
