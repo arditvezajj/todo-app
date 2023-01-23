@@ -39,6 +39,9 @@
                     <x-layouts.navigation-link href="{{ route('todo.index') }}">
                         Todo
                     </x-layouts.navigation-link>
+                    <x-layouts.navigation-link href="{{ route('tag.index') }}">
+                        Tags
+                    </x-layouts.navigation-link>
 
                 </div>
             </div>
