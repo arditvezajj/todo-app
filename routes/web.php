@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
 Route::post('/todo',[TodoController::class, 'store']);
 Route::get('/todo/edit/{todo}', [TodoController::class, 'edit']);
 Route::delete('/todo/{todo}', [Todocontroller::class, 'destroy']);
