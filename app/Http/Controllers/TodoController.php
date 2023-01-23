@@ -18,7 +18,7 @@ class TodoController extends Controller
       $todos = Todo::orderBy('created_at', 'desc')->paginate(5);
     }
 
-    return view('Todos.index', ['todos' => $todos]);
+    return view('Todos.index', ['todos' => $todos ,'priorities'=>Todo::getPriorities()]);
   }
 
 
@@ -29,6 +29,7 @@ class TodoController extends Controller
       'title' => 'required|max:250',
       'content' => 'required|max:20000',
       'due_date' => 'nullable|after:today',
+      'priority' =>'nullable',
 
     ]);
 
@@ -42,10 +43,10 @@ class TodoController extends Controller
   {
     //in the future should be casted from model
     // $todos['completed_at'] = Carbon::parse($todos['completed_at'])->format('Y-m-d');
-    return view('todos.edit', ['todo' => $todo]);
+    return view('todos.edit', ['todo' => $todo,'priorities'=>Todo::getPriorities()]);
   }
 
-  public function destroy(Todo $todo)
+  public  function destroy(Todo $todo)
   {
     $todo->delete();
 
@@ -59,6 +60,7 @@ class TodoController extends Controller
       'title' => 'required',
       'content' => 'required',
       'due_date' => 'required',
+      'priority' => 'nullable',
     ]);
 
     $todo->update($data);
