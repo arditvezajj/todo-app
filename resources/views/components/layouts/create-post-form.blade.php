@@ -1,54 +1,71 @@
 @props(['priorities'])
 
 
+
 <form action="/todo" method="POST">
     @csrf
-    <div class="grid justify-center">
 
-          <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+        <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
                 <div>
-
-                    <label for="first_name"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Title</label>
-                    <input type="string" name="title" value="{{ old('title') }}" id="first_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Title" required>
+                    <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                        alt="Workflow">
+                    <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
+                        Create TODO
+                    </h2>
                 </div>
-                <div>
-                    <label for="last_name"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
-                    <input type="text" name="content" value="{{ old('content') }}" id="last_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Content" required>
-                </div>
-                <h1 class="text-3xl font-italic dark:text-white   "> Choose a time </h1>
 
-                <input type="datetime-local" id="meeting-time" name="due_date" value=""
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="/">
+                 <div class=" bg-white max-w-md rounded overflow-hidden shadow-xl p-5">
+
+                    <div class="rounded-md shadow-sm -space-y-px">
+                        <div class="grid gap-6">
+                            <div class="col-span-12">
+                                <label for="first_name" class="block text-sm font-medium text-gray-700">Title</label>
+                                <input type="string" name="title" value="{{ old('title') }}" id="first_name"
+                                    id="first_name" autocomplete="given-name"
+                                    class="bg-gray-50  border-gray-300 text-gray-900 text-sm rounded-lg w-full focus:ring-blue-500
+                                     block p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title"
+                                    required>
+                            </div>
+
+                            <div class="col-span-12">
+                                <label for="last_name" class="block text-sm font-medium text-gray-700">Content</label>
+                                <input type="text" name="content" value="{{ old('content') }}" id="last_name" placeholder="Content"
+                                    class="bg-gray-50  border-gray-300 text-gray-900 text-sm rounded-lg w-full focus:ring-blue-500
+                                    block p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    required>
+                            </div>
+                        </div>
+                        <br> <br>
+                    </div>
+                    <div>
+                        <label for="date-time" class="block text-sm font-medium text-gray-700">Choose date and time </label> <br>
+                        <input type="datetime-local" id="meeting-time" name="due_date" value=""
+                          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    </div>
+                </div> <br>
                 <div>
-                    <label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                        priority</label>
-                    <select id="priority" name="priority"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select priority</label>
+                    <select id="priority" name="priority" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">Choose priority </option>
                         @foreach ($priorities as $priority)
                             <option> {{ $priority }} </option>
                         @endforeach
                     </select>
-                    <label for="tags"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select tags</label>
-                    <select  id="tags" name="tags[]"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" multiple>
-                        <option selected>Choose tags</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
+                    <label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Tags</label>
+                    <select id="priority" name="priority" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </select>
                 </div>
-                <button type="submit"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">CREATE
-                    TASK </button>
+        
+
+                <div>
+                    <button type="submit"
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                       Create Task
+                    </button>
+                </div>
+            </div>
+        </div>
 </form>
-</div>

@@ -26,9 +26,7 @@
         </div>
         </button>
     </form>
-
-    <h1 class="text-3xl font-bold dark:text-white   "> CREATE A TASK </h1>
-
+    
     <x-layouts.create-post-form :priorities="$priorities"> </x-layouts.create-post-form>
     <div class="grid justify-center">
         <table class="w-full text-left table-collapse">
