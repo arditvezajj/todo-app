@@ -14,6 +14,7 @@ class TodoController extends Controller
       $todos = Todo::where('title', 'like', '%' . request('search') . '%')
         ->orWhere('content', 'like', '%' . request('search') . '%')
         ->paginate(5);;
+        
     } else {
       $todos = Todo::orderBy('created_at', 'desc')->paginate(5);
     }
