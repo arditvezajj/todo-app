@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 
@@ -16,29 +17,37 @@ class TodoController extends Controller
         ->paginate(5);;
         
     } else {
-      $todos = Todo::orderBy('created_at', 'desc')->paginate(5);
+      $todos = Todo::orderBy('created_at', 'desc')->with(['tags'])->paginate(5);
     }
 
-    return view('Todos.index', ['todos' => $todos ,'priorities'=>Todo::getPriorities()]);
+    return view('Todos.index', ['todos' => $todos ,'priorities'=>Todo::getPriorities(),'tags' => Tag::all()]);
   }
 
-
-  public function store(Request $request)
+  public function create()
   {
+      $tags = Tag::all();
+      return view('todos.index', [
+          'tags' => $tags,
+      ]);
+  }
+
+   public function store(Request $request)
+    {
     $data = $request->validate([
 
       'title' => 'required|max:250',
       'content' => 'required|max:20000',
       'due_date' => 'nullable|after:today',
       'priority' =>'nullable',
-
+      'tags' => 'nullable',
     ]);
+        $todos= ToDo::create($data);
 
-    Todo::create($data);
-
-    return back();
-  }
-
+        if ($request->has('tags')) {
+            $todos->tags()->attach(explode(',', $request->tags));
+        }
+        return back()->with("message", "Task has been created");
+    }
 
   public function edit(Todo $todo)
   {
