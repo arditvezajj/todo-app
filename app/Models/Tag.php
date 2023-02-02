@@ -11,4 +11,10 @@ class Tag extends Model
 
 
     protected $fillable = ['tag'];
+    protected $table = 'tags';
+
+    public function todo()
+    {
+        return $this->belongsToMany(ToDo::class,'todos_tags','todo_id','tag_id');
+    }
 }
