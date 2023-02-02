@@ -17,4 +17,5 @@ Route::patch('/todo/{todo}/completed', [TodoController::class, 'completed']);
 Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
 Route::post('/tags', [TagController::class, 'store']);
 Route::delete('/tags/{tag}', [TagController::class, 'destroy']);
-Route::get('/tags/edit/{tag}', [TagController::class, 'edit']);
+Route::get('/tags/{tag}/edit', [TagController::class, 'edit']);
+Route::patch('/tags/{tag}', [TagController::class, 'update']);

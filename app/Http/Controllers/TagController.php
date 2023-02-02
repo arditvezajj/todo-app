@@ -16,18 +16,26 @@ class TagController extends Controller
 
  public function store(Request $request){
 
-    $data = $request->validate([
+    $tag = $request->validate([
 
-        'tag' => 'nullable',
+        'tag' => 'required|max:200',
     ]);
     
-    Tag::create($data);
-    
-    return back ();
-    }
-     public function edit(Tag $tags){
+    $tags=Tag::create($tag);
+    return back()->with("message","Tag has been created"); 
 
-       return view('tags.index');
+    }
+     public function edit(Tag $tag){
+
+       return view('tags.edit',['tag' => $tag,]);
+     }
+     public function update(Request $request, Tag $tag)
+     {
+        $tags = $request->validate([
+        'tag' => 'required|max:200',
+        ]);
+        $tag->update($tags);
+         return back()->with("message","Tag has been updated");
      }
 
      public function destroy(Tag $tag)

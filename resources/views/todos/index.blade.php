@@ -27,7 +27,7 @@
         </button>
     </form>
     
-    <x-layouts.create-post-form :priorities="$priorities"> </x-layouts.create-post-form>
+    <x-create-post-form :priorities="$priorities" :tags="$tags"> </x-create-post-form>
     <div class="grid justify-center">
         <table class="w-full text-left table-collapse">
             <thead>
@@ -65,14 +65,19 @@
                         <td class="px-4 py-2">{{ $todo['content'] }}</td>
                         <td class="px-4 py-2">{{ $todo['due_date'] }}</td>
                         <td class="px-4 py-2">{{ $todo['priority'] }}</td>
-                        <td class="px-4 py-2">{{ $todo['tags'] }}</td>
+                        <td class="px-4 py-2"> 
+                            <span >
+                                @foreach ($todo->tags as $tag)
+                                <span class="text-black bg-blue-50 p-2 border-2 border-blue-200  rounded">{{ $tag->tag }}</span>
+                                @endforeach
+                            </span>
+                        </td>
 
                         <td class="px-4 py-2"><a href="todo/edit/{{ $todo['id'] }}"
                                 class="bg-indigo-500 text-white p-2 rounded-lg hover:bg-indigo-600"> Edit</a>
                             </a></td>
                         <td class="px-4 py-2">
                             <form action="/todo/{{ $todo['id'] }}" method="POST">
-
                                 @csrf
                                 @method('DELETE')
 
