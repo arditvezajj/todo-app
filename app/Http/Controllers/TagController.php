@@ -24,6 +24,7 @@ class TagController extends Controller
     $tags=Tag::create($tag);
     return back()->with("message","Tag has been created"); 
 
+
     }
      public function edit(Tag $tag){
 
@@ -43,4 +44,9 @@ class TagController extends Controller
          $tag->delete();
          return back()->with('message', 'Tag was deleted');
      }
-}
+     protected function query(Request $request)
+    {
+        $tag = $request->tag();
+        $tagSelect = $request->get('select');
+    }
+} 
