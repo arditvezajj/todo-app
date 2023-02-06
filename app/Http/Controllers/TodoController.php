@@ -19,7 +19,7 @@ class TodoController extends Controller
     } else {
       $todos = Todo::orderBy('created_at', 'desc')->with(['tags'])->paginate(5);
     }
-
+    $tags = Tag::all();
     return view('Todos.index', ['todos' => $todos ,'priorities'=>Todo::getPriorities(),'tags' => Tag::all()]);
   }
 
@@ -40,12 +40,16 @@ class TodoController extends Controller
       'due_date' => 'nullable|after:today',
       'priority' =>'nullable',
       'tags' => 'nullable',
-    ]);
+    ]); 
         $todos= ToDo::create($data);
+         
+        if ($request->has('tags')) 
+         { 
+            foreach($request->tags as $tag) {
 
-        if ($request->has('tags')) {
-            $todos->tags()->attach(explode(',', $request->tags));
-        }
+              $todos->tags()->attach(explode(',', $tag));
+            }
+        } 
         return back()->with("message", "Task has been created");
     }
 
