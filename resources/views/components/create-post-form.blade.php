@@ -60,7 +60,7 @@
                 <div>
                     <label for="tag" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
                         Tags</label>
-                    <select id="select"
+                    <select id="select" name="tags[]" multiple 
                         class="w-full p-2 mt-2 mb-3  pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none text-gray-600 font-medium focus:ring focus:ring-blue-50 bg-gray-200">
                         @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
