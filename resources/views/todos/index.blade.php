@@ -59,18 +59,21 @@
             </thead>
 
             <tbody>
-                @foreach ($todos as $todo)
+                @foreach ($todos as $todo )
                     <tr class="bg-green-100 border-4 border-gray">
                         <td class="px-4 py-2">{{ $todo['title'] }}</td>
                         <td class="px-4 py-2">{{ $todo['content'] }}</td>
                         <td class="px-4 py-2">{{ $todo['due_date'] }}</td>
                         <td class="px-4 py-2">{{ $todo['priority'] }}</td>
+
                         <td class="px-4 py-2"> 
-                            <span >
-                                @foreach ($todo->tags as $tag)
-                                <span class="text-black bg-blue-50 p-2 border-2 border-blue-200  rounded">{{ $tag->tag }}</span>
-                                @endforeach
+                            @foreach ($todo->tags as $tag)
+                            <span
+                                
+                                  class="text-black bg-blue-50 p-2 border-2 border-blue-200  rounded">{{ $tag->tag }}
+                                 
                             </span>
+                            @endforeach
                         </td>
 
                         <td class="px-4 py-2"><a href="todo/edit/{{ $todo['id'] }}"
@@ -82,7 +85,7 @@
                                 @method('DELETE')
 
                                 <button class="bg-red-500 hover:bg-red-700 text-white  py-2 px-4 rounded-full">
-                                    Delete
+                                    Delete 
                                 </button>
 
                             </form>
