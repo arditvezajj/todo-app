@@ -1,4 +1,6 @@
-<x-guest-layout>
+<x-layouts.app>
+    <h1 class="text-2xl text-gray-900 font-bold text-center pb-5">Register</h1>
+    <div class="grid justify-center">
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +51,5 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</div>
+</x-layouts.app>

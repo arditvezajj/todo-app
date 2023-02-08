@@ -36,12 +36,31 @@
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <x-layouts.navigation-link href="{{ route('todo.index') }}">
-                        Todo
-                    </x-layouts.navigation-link>
+                    @auth
+                        <x-layouts.navigation-link href="{{ route('todo.index') }}">
+                            Todo
+                        </x-layouts.navigation-link>
+                    @endauth
+                    @auth
                     <x-layouts.navigation-link href="{{ route('tag.index') }}">
                         Tags
                     </x-layouts.navigation-link>
+                    @endauth
+
+                    @guest
+                        <x-layouts.navigation-link href="{{ route('register') }}">
+                            Register
+                        </x-layouts.navigation-link>
+                    @endguest
+
+                    <x-layouts.navigation-link href="{{ route('login') }}">
+                        @auth
+                            Authenticated
+                        @endauth
+                    </x-layouts.navigation-link>
+
+
+
 
                 </div>
             </div>
@@ -88,11 +107,16 @@
                             id="user-menu-item-0">Your Profile</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-1">Settings</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-2">Sign out</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                id="user-menu-item-2">Sign out</button>
+                        </form>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 
