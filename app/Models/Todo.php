@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
-{  
+{
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'completed_at', 'due_date', 'priority'];
+    protected $fillable = ['title', 'content', 'completed_at', 'user_id', 'due_date', 'priority'];
 
     protected $dates = ['due_date'];
 
@@ -29,7 +29,8 @@ class Todo extends Model
             'none' => self::NONE,
         ];
     }
-    public function tags(){
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class, 'todos_tags', 'todo_id', 'tag_id');
     }
 }
