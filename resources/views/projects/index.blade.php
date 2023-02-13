@@ -1,4 +1,4 @@
-<x-layouts.app>
+ <x-layouts.app>
     @if (Session::has('message'))
         {{ Session::get('message') }}
     @endif
@@ -10,7 +10,7 @@
     @endif
     
     
-    <x-create-post-form :priorities="$priorities" :tags="$tags"> </x-create-post-form>
+   {{-- <x-create-post-form :priorities="$priorities" :tags="$tags"> </x-create-post-form>
     <div class="grid justify-center">
         <form action="{{ route('todo.index') }}">
             <br>
@@ -98,7 +98,7 @@
 
         </table>
         {{ $todos->links() }}
-    </div>
+    </div>--}}
 
 
-</x-layouts.app>
+</x-layouts.app> 
