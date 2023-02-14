@@ -99,6 +99,6 @@
         </table>
         {{ $todos->links() }}
     </div>
-
+ <br> <br> <br>     
 
 </x-layouts.app>

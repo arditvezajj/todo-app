@@ -52,9 +52,9 @@
                 
 
 
-                     {{-- <x-layouts.navigation-link >
+                     <x-layouts.navigation-link href="{{ route('projects.index') }}">
                         Project
-                    </x-layouts.navigation-link>  --}}
+                    </x-layouts.navigation-link>  
                 
 
                     @guest

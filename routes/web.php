@@ -50,6 +50,11 @@ Route::middleware('auth')->group(function () {
 
    //project
    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+   Route::post('/projects', [ProjectController::class, 'store']);
+   Route::get('/projects/edit/{project}', [ProjectController::class, 'edit']);
+   Route::delete('/projects/{project}', [Projectcontroller::class, 'destroy']);
+//    Route::patch('/projects/{project}', [ProjectController::class, 'update']);
+//    Route::patch('/projects/{project}/completed', [ProjectController::class, 'completed']);
 
 
 });
