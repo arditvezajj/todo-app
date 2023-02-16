@@ -73,8 +73,9 @@ class TodoController extends Controller
 
   public function edit(Todo $todo)
   {
-    //in the future should be casted from model
-    // $todos['completed_at'] = Carbon::parse($todos['completed_at'])->format('Y-m-d');
+   
+    $this->authorize('view', $todo);
+
     $todo = $todo->load(['tags']);
     return view('todos.edit', ['todo' => $todo, 'priorities' => Todo::getPriorities(), 'tags' => Tag::all(), 'tagIds' => $todo->tags->pluck('id')->toArray()]);
   }

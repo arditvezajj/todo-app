@@ -33,8 +33,7 @@ class TagController extends Controller
      public function update(Request $request, Tag $tag)
      {
         $tags = $request->validate([
-        'tag' => 'required|max:200',
-        ]);
+        'tag' => 'required|max:200',]);
         $tag->update($tags);
          return back()->with("message","Tag has been updated");
      }
@@ -47,6 +46,6 @@ class TagController extends Controller
      protected function query(Request $request)
     {
         $tag = $request->tag();
-        $tagSelect = $request->get('select');
+        $tagSelect = $request->get('select'); 
     }
 } 

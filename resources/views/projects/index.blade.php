@@ -75,7 +75,7 @@
                      <tr class="bg-green-100 border-4 border-gray">
                          <td class="px-4 py-2">{{ $project['title'] }}</td>
                          <td class="px-4 py-2">{{ $project['content'] }}</td>
-                        <td class="px-4 py-2"><a href="/projects/edit/{{ $project['id'] }}"
+                        <td class="px-4 py-2"><a href="/projects/edit/{{ $project['id'] }}" 
                          class="bg-indigo-500 text-white p-2 rounded-lg hover:bg-indigo-600"> Edit</a>
                          </a></td>
 

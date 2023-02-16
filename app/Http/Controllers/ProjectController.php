@@ -10,8 +10,8 @@ class ProjectController extends Controller
 {
   public function index()
   {
-
-    return view('projects.index', ['projects' => Project::all()]);
+    
+    return view('projects.index', ['projects' => Project::orderBy('created_at','desc')->get()]);
   }
 
 
@@ -36,7 +36,7 @@ class ProjectController extends Controller
   public function edit(Project $project)
   {
 
-    return view('projects.edit');
+    return view('projects.edit',['project' => $project,]);
   }
 
 }
