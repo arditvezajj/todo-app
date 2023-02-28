@@ -10,8 +10,8 @@ class ProjectController extends Controller
 {
   public function index()
   {
-    
-    return view('projects.index', ['projects' => Project::orderBy('created_at','desc')->get()]);
+
+    return view('projects.index', ['projects' => Project::orderBy('created_at', 'desc')->get()]);
   }
 
 
@@ -19,10 +19,10 @@ class ProjectController extends Controller
   {
     $data = $request->validate([
       'title' => 'required|max:250',
-      'content' => 'required|max:20000', 
-    ]); 
+      'content' => 'required|max:20000',
+    ]);
 
-    $data['user_id']=Auth::user()->id;
+    $data['user_id'] = Auth::user()->id;
     Project::create($data);
     return back()->with("message", "Project has been created");
   }
@@ -36,7 +36,18 @@ class ProjectController extends Controller
   public function edit(Project $project)
   {
 
-    return view('projects.edit',['project' => $project,]);
+    return view('projects.edit', ['project' => $project]);
   }
+  public function update (Request $request,Project $project)
+  {
+    
+    $data = $request->validate([
+    'title' => 'required',
+    'content' => 'required',
+    ]);
 
+    $project->update($data);
+
+    return back()->with("message", "Project has been updated");
+  }
 }

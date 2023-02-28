@@ -9,7 +9,7 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'completed_at', 'user_id', 'due_date', 'priority'];
+    protected $fillable = ['title', 'content', 'completed_at', 'user_id', 'due_date', 'priority','project_id'];
 
     protected $dates = ['due_date'];
 
@@ -32,5 +32,9 @@ class Todo extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'todos_tags', 'todo_id', 'tag_id');
+    }
+    public function projects(){
+
+        return $this->belongsToMany(Project::class,'project_id','todo_id');
     }
 }

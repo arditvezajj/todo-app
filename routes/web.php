@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
    Route::post('/projects', [ProjectController::class, 'store']);
    Route::get('/projects/edit/{project}', [ProjectController::class, 'edit']);
    Route::delete('/projects/{project}', [Projectcontroller::class, 'destroy']);
-//    Route::patch('/projects/{project}', [ProjectController::class, 'update']);
+   Route::patch('/projects/{project}', [ProjectController::class, 'update']);
 //    Route::patch('/projects/{project}/completed', [ProjectController::class, 'completed']);
 
 

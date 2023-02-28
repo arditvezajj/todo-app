@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Tag;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-//$tasks = Todo::where(function($query) use (request('search')) {
-//   $query->where('title', 'like', "%{request('search')}%")
-//         ->orWhere('content', 'like', "%{request('search')}%");
-// })->where('user_id', $userId)->get();
 
 
 class TodoController extends Controller
@@ -31,7 +27,7 @@ class TodoController extends Controller
       $todos = Todo::orderBy('created_at', 'desc')->with(['tags'])->where('user_id', Auth::user()->id)->paginate(5);
     }
 
-    return view('Todos.index', ['todos' => $todos, 'priorities' => Todo::getPriorities(), 'tags' => Tag::all()]);
+    return view('Todos.index', ['todos' => $todos, 'priorities' => Todo::getPriorities(), 'tags' => Tag::all(), 'projects' => Project::all()]);
   }
 
   public function create()
@@ -51,13 +47,11 @@ class TodoController extends Controller
       'due_date' => 'nullable|after:today',
       'priority' => 'nullable',
       'tags' => 'nullable',
+      'project_id' => 'nullable',
+    
     ]);
 
-    // [
-    // title => 'test',
-    // conent..
-    //user_id => Auth::user()->id
-    // ]
+   
 
     $todos = ToDo::create([...['user_id' => Auth::user()->id], ...$data]);
 

@@ -10,7 +10,7 @@
     @endif
     
     
-    <x-create-post-form :priorities="$priorities" :tags="$tags"> </x-create-post-form>
+    <x-create-post-form :priorities="$priorities" :tags="$tags" :projects="$projects"> </x-create-post-form>
     <div class="grid justify-center">
         <form action="{{ route('todo.index') }}">
             <br>
